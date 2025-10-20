@@ -1,458 +1,467 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Happy Birthday — Love Edition</title>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500;700&display=swap"
+    rel="stylesheet">
   <style>
-    :root{
-      --pink:#ff4d8d;--magenta:#e8006f;--gold:#ffd166;--glass:rgba(255,255,255,.18);
+    :root {
+      --pink: #ff4d8d;
+      --magenta: #e8006f;
+      --gold: #ffd166;
+      --glass: rgba(255, 255, 255, .18);
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0;min-height:100vh;overflow:hidden;
-      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial,'Dancing Script',cursive;
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow: hidden;
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Dancing Script', cursive;
       background:
-        radial-gradient(1200px 800px at 20% 0%, rgba(255,221,225,.8) 0%, rgba(255,221,225,0) 60%),
-        radial-gradient(1200px 800px at 80% 100%, rgba(193,240,255,.8) 0%, rgba(193,240,255,0) 60%),
-        linear-gradient(135deg,#ffafbd,#ffc3a0);
+        radial-gradient(1200px 800px at 20% 0%, rgba(255, 221, 225, .8) 0%, rgba(255, 221, 225, 0) 60%),
+        radial-gradient(1200px 800px at 80% 100%, rgba(193, 240, 255, .8) 0%, rgba(193, 240, 255, 0) 60%),
+        linear-gradient(135deg, #ffafbd, #ffc3a0);
     }
-    .bg-aurora::before,.bg-aurora::after{
-      content:'';position:fixed;inset:-20vh -20vw;pointer-events:none;
+
+    /* Aurora light background */
+    .bg-aurora::before,
+    .bg-aurora::after {
+      content: '';
+      position: fixed;
+      inset: -20vh -20vw;
+      pointer-events: none;
       background:
-        radial-gradient(30vw 30vh at 20% 30%, rgba(255,77,141,.35), transparent 60%),
-        radial-gradient(30vw 30vh at 80% 70%, rgba(255,209,102,.28), transparent 60%),
-        radial-gradient(25vw 25vh at 50% 10%, rgba(0,204,255,.2), transparent 60%);
-      filter:blur(40px);animation:aurora 18s ease-in-out infinite alternate;
-    }
-    .bg-aurora::after{animation-duration:24s;opacity:.8}
-    @keyframes aurora{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(-3vw,2vh,0) scale(1.08)}}
-
-    .container{position:relative;z-index:3;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}
-    .card{
-      width:min(780px,92vw);padding:32px 24px;border-radius:24px;
-      background:linear-gradient(180deg,rgba(255,255,255,.28),rgba(255,255,255,.12));
-      backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.45);
-      box-shadow:0 20px 40px rgba(0,0,0,.16);
-    }
-    .title{
-      margin:0 0 10px;font-family:'Dancing Script',cursive;
-      font-size:clamp(38px,6vw,64px);line-height:1.1;
-      background:linear-gradient(90deg,#ff4d8d,#ffd166,#00d4ff);
-      -webkit-background-clip:text;background-clip:text;color:transparent;
-      text-shadow:0 3px 14px rgba(255,77,141,.4);text-align:center;
-    }
-    .subtitle{margin:0 0 12px;font-weight:600;color:#fff;letter-spacing:.3px;text-align:center}
-    .message{color:#fff;font-size:clamp(16px,2.5vw,18px);line-height:1.75;margin:10px 0 14px;text-align:center}
-    .signature{margin-top:10px;color:#ffecf3;font-style:italic;text-align:center}
-    .btns{display:flex;gap:12px;margin-top:14px;justify-content:center;flex-wrap:wrap}
-    .button{appearance:none;border:none;padding:12px 16px;border-radius:999px;font-weight:600;cursor:pointer;color:#fff;transition:all 0.3s ease}
-    .button.primary{background:linear-gradient(90deg,#ff4d8d,#e8006f);box-shadow:0 10px 24px rgba(232,0,111,.35)}
-    .button.secondary{background:linear-gradient(90deg,rgba(255,255,255,.35),rgba(255,255,255,.18));border:1px solid rgba(255,255,255,.6);box-shadow:0 10px 24px rgba(0,0,0,.12)}
-    .button:hover{transform:translateY(-2px)}.button:active{transform:translateY(0);box-shadow:none}
-
-    .typewriter{border-right:2px solid rgba(255,255,255,.75);overflow:hidden;display:inline-block;
-      animation:typing 6s steps(60,end),blink .9s step-end infinite alternate;
-      white-space:normal;word-wrap:break-word;max-width:100%}
-    @keyframes typing{from{max-height:0;opacity:0}to{max-height:200px;opacity:1}}
-    @keyframes blink{50%{border-color:transparent}}
-
-    .runner{position:fixed;left:0;width:100vw;overflow:hidden;z-index:1;pointer-events:auto}
-    .runner-top{top:8%;transform:rotate(-1.5deg)}
-    .runner-bottom{bottom:6%;transform:rotate(1deg)}
-    .track{display:flex;gap:16px;will-change:transform}
-    .track img{height:clamp(90px,14vw,140px);width:auto;border-radius:16px;border:8px solid #fff;box-shadow:0 8px 22px rgba(0,0,0,.24);object-fit:cover;cursor:pointer;transition:all 0.3s ease}
-    .track img:hover{transform:scale(1.05);box-shadow:0 12px 30px rgba(0,0,0,.35)}
-    .track .frame:nth-child(odd){transform:rotate(3deg)}
-    .track .frame:nth-child(even){transform:rotate(-2deg)}
-    .track .frame:nth-child(odd):hover{transform:rotate(3deg) scale(1.05)}
-    .track .frame:nth-child(even):hover{transform:rotate(-2deg) scale(1.05)}
-    .animate-left{animation:scrollLeft 28s linear infinite}
-    .animate-left.slower{animation-duration:36s}
-    @keyframes scrollLeft{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
-
-    /* Modal cho view ảnh */
-    .image-modal{
-      position:fixed;top:0;left:0;width:100vw;height:100vh;
-      background:rgba(0,0,0,0.9);backdrop-filter:blur(10px);
-      display:none;align-items:center;justify-content:center;z-index:1000;
-      animation:fadeIn 0.3s ease;
-    }
-    .image-modal.show{display:flex}
-    .modal-content{
-      position:relative;max-width:90vw;max-height:90vh;
-      border-radius:20px;overflow:hidden;
-      box-shadow:0 25px 50px rgba(0,0,0,0.5);
-    }
-    .modal-image{
-      width:100%;height:100%;object-fit:contain;
-      border-radius:20px;
-    }
-    .modal-close{
-      position:absolute;top:15px;right:15px;
-      width:40px;height:40px;border:none;border-radius:50%;
-      background:rgba(255,255,255,0.9);color:#333;
-      font-size:20px;font-weight:bold;cursor:pointer;
-      display:flex;align-items:center;justify-content:center;
-      transition:all 0.3s ease;
-    }
-    .modal-close:hover{
-      background:#fff;transform:scale(1.1);
-    }
-    .modal-nav{
-      position:absolute;top:50%;transform:translateY(-50%);
-      width:50px;height:50px;border:none;border-radius:50%;
-      background:rgba(255,255,255,0.9);color:#333;
-      font-size:24px;font-weight:bold;cursor:pointer;
-      display:flex;align-items:center;justify-content:center;
-      transition:all 0.3s ease;
-    }
-    .modal-nav:hover{background:#fff;transform:translateY(-50%) scale(1.1)}
-    .modal-prev{left:20px}
-    .modal-next{right:20px}
-    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-
-    .heart{
-      position:fixed;bottom:-40px;width:18px;height:18px;background:var(--pink);
-      transform:rotate(45deg);z-index:2;animation:floatUp 6.5s ease-in forwards
-    }
-    .heart::before,.heart::after{content:'';position:absolute;width:18px;height:18px;background:inherit;border-radius:50%}
-    .heart::before{left:-9px}.heart::after{top:-9px}
-    @keyframes floatUp{
-      0%{transform:translateY(0) rotate(45deg) scale(.9);opacity:0}
-      15%{opacity:.9}
-      100%{transform:translateY(-110vh) rotate(45deg) scale(1.1);opacity:0}
+        radial-gradient(30vw 30vh at 20% 30%, rgba(255, 77, 141, .35), transparent 60%),
+        radial-gradient(30vw 30vh at 80% 70%, rgba(255, 209, 102, .28), transparent 60%),
+        radial-gradient(25vw 25vh at 50% 10%, rgba(0, 204, 255, .2), transparent 60%);
+      filter: blur(40px);
+      animation: aurora 18s ease-in-out infinite alternate;
     }
 
-    .sparkle{
-      position:fixed;width:4px;height:4px;background:#ffd166;border-radius:50%;
-      z-index:2;animation:sparkleFloat 4s ease-out forwards;
-      box-shadow:0 0 6px #ffd166;
-    }
-    @keyframes sparkleFloat{
-      0%{transform:translateY(0) scale(0);opacity:0}
-      20%{opacity:1;transform:scale(1)}
-      100%{transform:translateY(-100vh) scale(0);opacity:0}
+    .bg-aurora::after {
+      animation-duration: 24s;
+      opacity: .8
     }
 
-    /* Hiệu ứng pháo hoa */
-    .firework{
-      position:fixed;width:6px;height:6px;border-radius:50%;
-      z-index:2;pointer-events:none;
-    }
-    .firework-particle{
-      position:absolute;width:3px;height:3px;border-radius:50%;
-      animation:explode 1.5s ease-out forwards;
-    }
-    @keyframes explode{
-      0%{
-        transform:translate(0,0) scale(1);
-        opacity:1;
+    @keyframes aurora {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1)
       }
-      100%{
-        opacity:0;
-        transform:scale(0);
-      }
-    }
-    
-    /* Pháo hoa lớn */
-    .big-firework{
-      position:fixed;z-index:2;pointer-events:none;
-    }
-    .big-firework-particle{
-      position:absolute;width:4px;height:4px;border-radius:50%;
-      animation:bigExplode 2s ease-out forwards;
-    }
-    @keyframes bigExplode{
-      0%{
-        transform:translate(0,0) scale(1);
-        opacity:1;
-      }
-      50%{
-        opacity:0.8;
-      }
-      100%{
-        opacity:0;
-        transform:scale(0.2);
+
+      100% {
+        transform: translate3d(-3vw, 2vh, 0) scale(1.08)
       }
     }
 
-    @media(max-width:480px){
-      .card{padding:26px 18px;border-radius:20px}
-      .message{font-size:15.5px}
-      .track img{height:96px}
-      .btns{flex-direction:column;align-items:center}
+    .container {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px
+    }
+
+    .card {
+      width: min(780px, 92vw);
+      padding: 32px 24px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, .28), rgba(255, 255, 255, .12));
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, .45);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, .16);
+    }
+
+    .title {
+      margin: 0 0 10px;
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(38px, 6vw, 64px);
+      line-height: 1.1;
+      background: linear-gradient(90deg, #ff4d8d, #ffd166, #00d4ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 3px 14px rgba(255, 77, 141, .4);
+      text-align: center;
+    }
+
+    .subtitle {
+      margin: 0 0 12px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: .3px;
+      text-align: center
+    }
+
+    .message {
+      color: #fff;
+      font-size: clamp(16px, 2.5vw, 18px);
+      line-height: 1.75;
+      margin: 10px 0 14px;
+      text-align: center
+    }
+
+    .signature {
+      margin-top: 10px;
+      color: #ffecf3;
+      font-style: italic;
+      text-align: center
+    }
+
+    /* SLIDE ẢNH CHẠY LIÊN TỤC */
+    .runner {
+      position: fixed;
+      left: 0;
+      width: 100vw;
+      overflow: hidden;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .runner-top {
+      top: 8%;
+      transform: rotate(-1.5deg);
+    }
+
+    .runner-bottom {
+      bottom: 6%;
+      transform: rotate(1deg);
+    }
+
+    .track {
+      display: inline-flex;
+      white-space: nowrap;
+      will-change: transform;
+      animation: scrollLeft 40s linear infinite;
+    }
+
+    .track img {
+      height: clamp(90px, 14vw, 140px);
+      width: auto;
+      border-radius: 16px;
+      border: 8px solid #fff;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, .24);
+      object-fit: cover;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-right: 16px;
+    }
+
+    .track img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, .35);
+    }
+
+    @keyframes scrollLeft {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+
+      /* vì nhân đôi ảnh */
+    }
+
+    /* Hiệu ứng trái tim & sparkle */
+    .heart {
+      position: fixed;
+      bottom: -40px;
+      width: 18px;
+      height: 18px;
+      background: var(--pink);
+      transform: rotate(45deg);
+      z-index: 2;
+      animation: floatUp 6.5s ease-in forwards;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: inherit;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      left: -9px;
+    }
+
+    .heart::after {
+      top: -9px;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(45deg) scale(.9);
+        opacity: 0;
+      }
+
+      15% {
+        opacity: .9;
+      }
+
+      100% {
+        transform: translateY(-110vh) rotate(45deg) scale(1.1);
+        opacity: 0;
+      }
+    }
+
+    .sparkle {
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      background: #ffd166;
+      border-radius: 50%;
+      z-index: 2;
+      animation: sparkleFloat 4s ease-out forwards;
+      box-shadow: 0 0 6px #ffd166;
+    }
+
+    @keyframes sparkleFloat {
+      0% {
+        transform: translateY(0) scale(0);
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      100% {
+        transform: translateY(-100vh) scale(0);
+        opacity: 0;
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="bg-aurora"></div>
 
-  <!-- Hàng ảnh chạy ngang (trên) -->
-  <div class="runner runner-top" aria-hidden="true">
-    <div class="track animate-left">
-      <img class="frame" src="image/2.jpg" alt="Ảnh yêu thương 2">
-      <img class="frame" src="image/3.jpg" alt="Ảnh yêu thương 3">
-      <img class="frame" src="image/4.jpg" alt="Ảnh yêu thương 4">
-      <img class="frame" src="image/5.jpg" alt="Ảnh yêu thương 5">
-      <img class="frame" src="image/6.jpg" alt="Ảnh yêu thương 6">
-      <img class="frame" src="image/2.jpg" alt="Ảnh yêu thương 2">
-      <img class="frame" src="image/3.jpg" alt="Ảnh yêu thương 3">
-      <img class="frame" src="image/4.jpg" alt="Ảnh yêu thương 4">
-      <img class="frame" src="image/5.jpg" alt="Ảnh yêu thương 5">
-      <img class="frame" src="image/6.jpg" alt="Ảnh yêu thương 6">
+  <!-- SLIDE TRÊN -->
+  <div class="runner runner-top">
+    <div class="track">
+      <!-- Ảnh nhân đôi để chạy liên tục -->
+      <img class="frame" src="image/2.jpg">
+      <img class="frame" src="image/3.jpg">
+      <img class="frame" src="image/4.jpg">
+      <img class="frame" src="image/5.jpg">
+      <img class="frame" src="image/6.jpg">
+      <img class="frame" src="image/2.jpg">
+      <img class="frame" src="image/3.jpg">
+      <img class="frame" src="image/4.jpg">
+      <img class="frame" src="image/5.jpg">
+      <img class="frame" src="image/6.jpg">
     </div>
   </div>
 
-  <!-- Hàng ảnh chạy ngang (dưới) -->
-  <div class="runner runner-bottom" aria-hidden="true">
-    <div class="track animate-left slower">
-      <img class="frame" src="image/2.jpg" alt="">
-      <img class="frame" src="image/3.jpg" alt="">
-      <img class="frame" src="image/6.jpg" alt="">
-      <img class="frame" src="image/5.jpg" alt="">
-      <img class="frame" src="image/4.jpg" alt="">
-      <img class="frame" src="image/2.jpg" alt="">
-      <img class="frame" src="image/3.jpg" alt="">
-      <img class="frame" src="image/6.jpg" alt="">
+  <!-- SLIDE DƯỚI -->
+  <div class="runner runner-bottom">
+    <div class="track">
+      <img class="frame" src="image/6.jpg">
+      <img class="frame" src="image/5.jpg">
+      <img class="frame" src="image/4.jpg">
+      <img class="frame" src="image/3.jpg">
+      <img class="frame" src="image/2.jpg">
+      <img class="frame" src="image/6.jpg">
+      <img class="frame" src="image/5.jpg">
+      <img class="frame" src="image/4.jpg">
+      <img class="frame" src="image/3.jpg">
+      <img class="frame" src="image/2.jpg">
     </div>
   </div>
 
+  <!-- Nội dung chính -->
   <div class="container">
     <div class="card">
       <h1 class="title">💝 Chúc mừng sinh nhật Huyền Nhã 💝</h1>
       <p class="subtitle">🎂 Hôm nay thế giới đẹp hơn vì có em 🎂</p>
-      <p class="message">
-        <span class="typewriter">
-          Cảm ơn em vì đã đến. Chúc em luôn rạng rỡ, hạnh phúc và được yêu thương thật nhiều. 
-          <br> Yêu em rất nhiều 👉👈!
-        </span>
-      </p>
-      <div class="btns" style="display:none;">
-        <button class="button primary" id="personalize">✍️ Cá nhân hóa</button>
-        <button class="button secondary" id="toggleHearts">💝 Tắt/Bật hiệu ứng</button>
-        <button class="button secondary" id="surprise">🎁 Bất ngờ</button>
-      </div>
+      <p class="message"><span class="typewriter">Cảm ơn em vì đã đến. Chúc em luôn rạng rỡ, hạnh phúc và được yêu
+          thương thật nhiều.<br>Yêu em rất nhiều 👉👈!</span></p>
       <p class="signature">— From người bí ẩn —</p>
     </div>
   </div>
 
-  <!-- Modal xem ảnh -->
-  <div class="image-modal" id="imageModal">
-    <div class="modal-content">
-      <img class="modal-image" id="modalImage" src="" alt="Ảnh xem chi tiết">
-      <button class="modal-close" id="modalClose">×</button>
-      <button class="modal-nav modal-prev" id="modalPrev">‹</button>
-      <button class="modal-nav modal-next" id="modalNext">›</button>
-    </div>
+  <!-- Pháo hoa Canvas -->
+  <canvas id="fireworksCanvas"></canvas>
+
+  <!-- Audio Element for Background Music -->
+  <audio id="backgroundMusic" loop preload="auto">
+    <source src="image/happy-birthday-258264.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Music Control Button -->
+  <div style="position: fixed; top: 20px; right: 20px; z-index: 10;">
+    <button id="musicToggle" style="
+      background: linear-gradient(135deg, #ff4d8d, #ffd166);
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 77, 141, 0.3);
+      transition: all 0.3s ease;
+    " onclick="toggleMusic()">🎵</button>
   </div>
 
   <script>
-    // Mưa trái tim và sparkle
-    let heartTimer, sparkleTimer, fireworkTimer;
-    
-    function makeHeart(){
+    // Hiệu ứng tim & sparkle
+    let heartTimer, sparkleTimer;
+    function makeHeart() {
       const h = document.createElement('div');
       h.className = 'heart';
       h.style.left = Math.random() * 100 + 'vw';
-      h.style.background = ['#ff4d8d','#ff7eb3','#ff3f7c','#e8006f'][Math.floor(Math.random()*4)];
+      h.style.background = ['#ff4d8d', '#ff7eb3', '#ff3f7c', '#e8006f'][Math.floor(Math.random() * 4)];
       h.style.animationDuration = (5 + Math.random() * 4) + 's';
-      h.style.opacity = (0.6 + Math.random() * 0.4);
       document.body.appendChild(h);
       setTimeout(() => h.remove(), 10000);
     }
-    
-    function makeSparkle(){
+    function makeSparkle() {
       const s = document.createElement('div');
       s.className = 'sparkle';
       s.style.left = Math.random() * 100 + 'vw';
-      s.style.background = ['#ffd166','#00d4ff','#ff4d8d'][Math.floor(Math.random()*3)];
+      s.style.background = ['#ffd166', '#00d4ff', '#ff4d8d'][Math.floor(Math.random() * 3)];
       s.style.animationDuration = (3 + Math.random() * 2) + 's';
       document.body.appendChild(s);
       setTimeout(() => s.remove(), 5000);
     }
-
-    // Tạo pháo hoa nhỏ
-    function createFirework(x, y) {
-      const colors = ['#ff4d8d', '#ffd166', '#00d4ff', '#ff7eb3', '#e8006f', '#ff3f7c'];
-      const firework = document.createElement('div');
-      firework.className = 'firework';
-      firework.style.left = x + 'px';
-      firework.style.top = y + 'px';
-      
-      // Tạo 12 hạt pháo hoa
-      for(let i = 0; i < 12; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'firework-particle';
-        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-        
-        const angle = (i * 30) * Math.PI / 180;
-        const distance = 50 + Math.random() * 50;
-        const endX = Math.cos(angle) * distance;
-        const endY = Math.sin(angle) * distance;
-        
-        particle.style.setProperty('--end-x', endX + 'px');
-        particle.style.setProperty('--end-y', endY + 'px');
-        particle.style.transform = `translate(${endX}px, ${endY}px)`;
-        
-        firework.appendChild(particle);
-      }
-      
-      document.body.appendChild(firework);
-      setTimeout(() => firework.remove(), 2000);
+    function startEffects() {
+      if (!heartTimer) heartTimer = setInterval(makeHeart, 500);
+      if (!sparkleTimer) sparkleTimer = setInterval(makeSparkle, 800);
     }
-
-    // Tạo pháo hoa lớn
-    function createBigFirework(x, y) {
-      const colors = ['#ff4d8d', '#ffd166', '#00d4ff', '#ff7eb3', '#e8006f', '#ff3f7c', '#fff'];
-      const firework = document.createElement('div');
-      firework.className = 'big-firework';
-      firework.style.left = x + 'px';
-      firework.style.top = y + 'px';
-      
-      // Tạo 24 hạt pháo hoa lớn
-      for(let i = 0; i < 24; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'big-firework-particle';
-        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-        particle.style.boxShadow = `0 0 10px ${colors[Math.floor(Math.random() * colors.length)]}`;
-        
-        const angle = (i * 15) * Math.PI / 180;
-        const distance = 80 + Math.random() * 80;
-        const endX = Math.cos(angle) * distance;
-        const endY = Math.sin(angle) * distance;
-        
-        particle.style.transform = `translate(${endX}px, ${endY}px)`;
-        
-        firework.appendChild(particle);
-      }
-      
-      document.body.appendChild(firework);
-      setTimeout(() => firework.remove(), 3000);
-    }
-
-    // Pháo hoa tự động
-    function randomFireworks() {
-      const x = Math.random() * window.innerWidth;
-      const y = Math.random() * (window.innerHeight * 0.6) + (window.innerHeight * 0.1);
-      
-      if(Math.random() > 0.7) {
-        createBigFirework(x, y);
-      } else {
-        createFirework(x, y);
-      }
-    }
-    
-    function startEffects(){ 
-      if(!heartTimer){ heartTimer = setInterval(makeHeart, 500); }
-      if(!sparkleTimer){ sparkleTimer = setInterval(makeSparkle, 800); }
-      if(!fireworkTimer){ fireworkTimer = setInterval(randomFireworks, 2000); }
-    }
-    
-    // Tự động bắt đầu hiệu ứng
     startEffects();
 
-    // Tiết kiệm tài nguyên khi tab ẩn
-    document.addEventListener('visibilitychange', () => {
-      if(document.hidden){ 
-        clearInterval(heartTimer); 
-        clearInterval(sparkleTimer);
-        clearInterval(fireworkTimer);
-        heartTimer = null;
-        sparkleTimer = null;
-        fireworkTimer = null;
-      } else { 
-        startEffects(); 
+    // --- PHÁO HOA CANVAS ---
+    const canvas = document.getElementById("fireworksCanvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+    canvas.style.position = "fixed";
+    canvas.style.top = "0";
+    canvas.style.left = "0";
+    canvas.style.zIndex = "0";
+    canvas.style.pointerEvents = "none";
+    const fireworks = [], particles = [];
+    class Firework {
+      constructor(x, y, targetY, color) {
+        this.x = x; this.y = y; this.targetY = targetY; this.color = color; this.speed = 8;
       }
-    });
-
-    // Thêm hiệu ứng click vào card
-    document.querySelector('.card').addEventListener('click', (e) => {
-      // Sparkle nhỏ
-      for(let i = 0; i < 5; i++){
-        setTimeout(makeSparkle, i * 200);
+      update() {
+        this.y -= this.speed;
+        if (this.y <= this.targetY) { this.explode(); fireworks.splice(fireworks.indexOf(this), 1); }
       }
-      
-      // Pháo hoa tại vị trí click
-      const rect = e.currentTarget.getBoundingClientRect();
-      const x = e.clientX;
-      const y = e.clientY;
-      
-      createBigFirework(x, y);
-      
-      // Thêm pháo hoa xung quanh
-      setTimeout(() => {
-        createFirework(x - 100, y - 50);
-        createFirework(x + 100, y - 50);
-        createFirework(x, y - 100);
-      }, 300);
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+      explode() {
+        for (let i = 0; i < 40; i++)particles.push(new Particle(this.x, this.y, this.color));
+      }
+    }
+    class Particle {
+      constructor(x, y, color) {
+        this.x = x; this.y = y; this.color = color; this.radius = 2;
+        this.speed = Math.random() * 5 + 1;
+        this.angle = Math.random() * Math.PI * 2;
+        this.life = 100; this.gravity = 0.05;
+      }
+      update() {
+        this.x += Math.cos(this.angle) * this.speed;
+        this.y += Math.sin(this.angle) * this.speed + this.gravity;
+        this.speed *= 0.98; this.life--;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+    }
+    function animate() {
+      requestAnimationFrame(animate);
+      ctx.fillStyle = "rgba(0,0,0,0.15)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      fireworks.forEach(f => { f.update(); f.draw(); });
+      particles.forEach((p, i) => { p.update(); p.draw(); if (p.life <= 0) particles.splice(i, 1); });
+    }
+    setInterval(() => {
+      const x = Math.random() * canvas.width;
+      const color = `hsl(${Math.random() * 360},100%,60%)`;
+      fireworks.push(new Firework(x, canvas.height, Math.random() * canvas.height / 2, color));
+    }, 900);
+    document.addEventListener("click", e => {
+      const color = `hsl(${Math.random() * 360},100%,60%)`;
+      fireworks.push(new Firework(e.clientX, canvas.height, e.clientY, color));
     });
+    window.addEventListener("resize", () => { canvas.width = innerWidth; canvas.height = innerHeight; });
+    animate();
 
-    // Xử lý modal xem ảnh
-    const modal = document.getElementById('imageModal');
-    const modalImage = document.getElementById('modalImage');
-    const modalClose = document.getElementById('modalClose');
-    const modalPrev = document.getElementById('modalPrev');
-    const modalNext = document.getElementById('modalNext');
-    
-    // Danh sách tất cả ảnh
-    const images = ['image/1.JPG', 'image/2.jpg', 'image/3.jpg', 'image/4.jpg', 'image/5.jpg', 'image/6.jpg'];
-    let currentImageIndex = 0;
+    // --- MUSIC CONTROLS ---
+    let isPlaying = false;
+    const music = document.getElementById('backgroundMusic');
+    const musicToggle = document.getElementById('musicToggle');
 
-    // Đợi DOM load xong
-    document.addEventListener('DOMContentLoaded', function() {
-      // Thêm event listener cho tất cả ảnh
-      document.querySelectorAll('.track img').forEach((img, index) => {
-        console.log('Adding click listener to:', img.src);
-        img.addEventListener('click', (e) => {
-          console.log('Image clicked:', img.src);
-          e.stopPropagation();
-          const src = img.src;
-          const filename = src.split('/').pop().toLowerCase();
-          currentImageIndex = images.findIndex(imgPath => imgPath.toLowerCase().includes(filename.replace('.jpg', '').replace('.jpeg', '').replace('.png', '')));
-          if(currentImageIndex === -1) currentImageIndex = 0;
-          
-          console.log('Opening modal with image:', images[currentImageIndex]);
-          modalImage.src = images[currentImageIndex];
-          modal.classList.add('show');
-          document.body.style.overflow = 'hidden';
+    function toggleMusic() {
+      if (isPlaying) {
+        music.pause();
+        musicToggle.innerHTML = '🎵';
+        musicToggle.style.opacity = '0.7';
+        isPlaying = false;
+      } else {
+        music.play().then(() => {
+          musicToggle.innerHTML = '🎶';
+          musicToggle.style.opacity = '1';
+          isPlaying = true;
+        }).catch(error => {
+          console.error('Error playing music:', error);
+          alert('Không thể phát nhạc. Vui lòng thử lại!');
         });
-      });
-    });
-
-    // Đóng modal
-    function closeModal() {
-      modal.classList.remove('show');
-      document.body.style.overflow = '';
+      }
     }
 
-    modalClose.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => {
-      if(e.target === modal) closeModal();
-    });
+    // Auto-start music when page loads (with user interaction)
+    document.addEventListener('click', function startMusic() {
+      if (!isPlaying) {
+        music.play().then(() => {
+          musicToggle.innerHTML = '🎶';
+          musicToggle.style.opacity = '1';
+          isPlaying = true;
+        }).catch(error => {
+          console.error('Auto-play failed:', error);
+        });
+      }
+      // Remove this listener after first click
+      document.removeEventListener('click', startMusic);
+    }, { once: true });
 
-    // Điều hướng ảnh
-    modalPrev.addEventListener('click', (e) => {
-      e.stopPropagation();
-      currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-      modalImage.src = images[currentImageIndex];
+    // Hover effect for music button
+    musicToggle.addEventListener('mouseenter', () => {
+      musicToggle.style.transform = 'scale(1.1)';
     });
-
-    modalNext.addEventListener('click', (e) => {
-      e.stopPropagation();
-      currentImageIndex = (currentImageIndex + 1) % images.length;
-      modalImage.src = images[currentImageIndex];
-    });
-
-    // Phím tắt
-    document.addEventListener('keydown', (e) => {
-      if(!modal.classList.contains('show')) return;
-      
-      if(e.key === 'Escape') closeModal();
-      else if(e.key === 'ArrowLeft') modalPrev.click();
-      else if(e.key === 'ArrowRight') modalNext.click();
+    
+    musicToggle.addEventListener('mouseleave', () => {
+      musicToggle.style.transform = 'scale(1)';
     });
   </script>
 </body>
+
 </html>
