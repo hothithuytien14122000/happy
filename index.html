@@ -136,6 +136,48 @@
       100%{transform:translateY(-100vh) scale(0);opacity:0}
     }
 
+    /* Hiệu ứng pháo hoa */
+    .firework{
+      position:fixed;width:6px;height:6px;border-radius:50%;
+      z-index:2;pointer-events:none;
+    }
+    .firework-particle{
+      position:absolute;width:3px;height:3px;border-radius:50%;
+      animation:explode 1.5s ease-out forwards;
+    }
+    @keyframes explode{
+      0%{
+        transform:translate(0,0) scale(1);
+        opacity:1;
+      }
+      100%{
+        opacity:0;
+        transform:scale(0);
+      }
+    }
+    
+    /* Pháo hoa lớn */
+    .big-firework{
+      position:fixed;z-index:2;pointer-events:none;
+    }
+    .big-firework-particle{
+      position:absolute;width:4px;height:4px;border-radius:50%;
+      animation:bigExplode 2s ease-out forwards;
+    }
+    @keyframes bigExplode{
+      0%{
+        transform:translate(0,0) scale(1);
+        opacity:1;
+      }
+      50%{
+        opacity:0.8;
+      }
+      100%{
+        opacity:0;
+        transform:scale(0.2);
+      }
+    }
+
     @media(max-width:480px){
       .card{padding:26px 18px;border-radius:20px}
       .message{font-size:15.5px}
@@ -159,6 +201,9 @@
       <img class="frame" src="image/1.jpg" alt="Ảnh yêu thương 1">
       <img class="frame" src="image/2.jpg" alt="Ảnh yêu thương 2">
       <img class="frame" src="image/3.jpg" alt="Ảnh yêu thương 3">
+      <img class="frame" src="image/4.jpg" alt="Ảnh yêu thương 4">
+      <img class="frame" src="image/5.jpg" alt="Ảnh yêu thương 5">
+      <img class="frame" src="image/6.jpg" alt="Ảnh yêu thương 6">
     </div>
   </div>
 
@@ -206,7 +251,7 @@
 
   <script>
     // Mưa trái tim và sparkle
-    let heartTimer, sparkleTimer;
+    let heartTimer, sparkleTimer, fireworkTimer;
     
     function makeHeart(){
       const h = document.createElement('div');
@@ -228,10 +273,82 @@
       document.body.appendChild(s);
       setTimeout(() => s.remove(), 5000);
     }
+
+    // Tạo pháo hoa nhỏ
+    function createFirework(x, y) {
+      const colors = ['#ff4d8d', '#ffd166', '#00d4ff', '#ff7eb3', '#e8006f', '#ff3f7c'];
+      const firework = document.createElement('div');
+      firework.className = 'firework';
+      firework.style.left = x + 'px';
+      firework.style.top = y + 'px';
+      
+      // Tạo 12 hạt pháo hoa
+      for(let i = 0; i < 12; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'firework-particle';
+        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+        
+        const angle = (i * 30) * Math.PI / 180;
+        const distance = 50 + Math.random() * 50;
+        const endX = Math.cos(angle) * distance;
+        const endY = Math.sin(angle) * distance;
+        
+        particle.style.setProperty('--end-x', endX + 'px');
+        particle.style.setProperty('--end-y', endY + 'px');
+        particle.style.transform = `translate(${endX}px, ${endY}px)`;
+        
+        firework.appendChild(particle);
+      }
+      
+      document.body.appendChild(firework);
+      setTimeout(() => firework.remove(), 2000);
+    }
+
+    // Tạo pháo hoa lớn
+    function createBigFirework(x, y) {
+      const colors = ['#ff4d8d', '#ffd166', '#00d4ff', '#ff7eb3', '#e8006f', '#ff3f7c', '#fff'];
+      const firework = document.createElement('div');
+      firework.className = 'big-firework';
+      firework.style.left = x + 'px';
+      firework.style.top = y + 'px';
+      
+      // Tạo 24 hạt pháo hoa lớn
+      for(let i = 0; i < 24; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'big-firework-particle';
+        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+        particle.style.boxShadow = `0 0 10px ${colors[Math.floor(Math.random() * colors.length)]}`;
+        
+        const angle = (i * 15) * Math.PI / 180;
+        const distance = 80 + Math.random() * 80;
+        const endX = Math.cos(angle) * distance;
+        const endY = Math.sin(angle) * distance;
+        
+        particle.style.transform = `translate(${endX}px, ${endY}px)`;
+        
+        firework.appendChild(particle);
+      }
+      
+      document.body.appendChild(firework);
+      setTimeout(() => firework.remove(), 3000);
+    }
+
+    // Pháo hoa tự động
+    function randomFireworks() {
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * (window.innerHeight * 0.6) + (window.innerHeight * 0.1);
+      
+      if(Math.random() > 0.7) {
+        createBigFirework(x, y);
+      } else {
+        createFirework(x, y);
+      }
+    }
     
     function startEffects(){ 
       if(!heartTimer){ heartTimer = setInterval(makeHeart, 500); }
       if(!sparkleTimer){ sparkleTimer = setInterval(makeSparkle, 800); }
+      if(!fireworkTimer){ fireworkTimer = setInterval(randomFireworks, 2000); }
     }
     
     // Tự động bắt đầu hiệu ứng
@@ -242,8 +359,10 @@
       if(document.hidden){ 
         clearInterval(heartTimer); 
         clearInterval(sparkleTimer);
+        clearInterval(fireworkTimer);
         heartTimer = null;
         sparkleTimer = null;
+        fireworkTimer = null;
       } else { 
         startEffects(); 
       }
@@ -251,9 +370,24 @@
 
     // Thêm hiệu ứng click vào card
     document.querySelector('.card').addEventListener('click', (e) => {
+      // Sparkle nhỏ
       for(let i = 0; i < 5; i++){
         setTimeout(makeSparkle, i * 200);
       }
+      
+      // Pháo hoa tại vị trí click
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = e.clientX;
+      const y = e.clientY;
+      
+      createBigFirework(x, y);
+      
+      // Thêm pháo hoa xung quanh
+      setTimeout(() => {
+        createFirework(x - 100, y - 50);
+        createFirework(x + 100, y - 50);
+        createFirework(x, y - 100);
+      }, 300);
     });
 
     // Xử lý modal xem ảnh
